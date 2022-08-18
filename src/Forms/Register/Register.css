@@ -1,0 +1,21 @@
+.content{
+    display: none;
+}
+
+.active-content{
+    display: block;
+}
+
+.active-tabs{
+    background-color: #303f9f;
+    padding: 10px 20px;
+    border-radius: 4px;
+    color: whitesmoke;
+}
+
+.tabs{
+    border: 1px solid #303f9f;
+    padding: 10px 20px;
+    border-radius: 4px;
+    color: #303f9f;
+}
