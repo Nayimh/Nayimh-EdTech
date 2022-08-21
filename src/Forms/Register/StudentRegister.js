@@ -53,7 +53,7 @@ const formOptions = { resolver: yupResolver(validationSchema) };
               {" "}
                Name :
             </label>
-            <input name="name" type="name" {...register('name')} className={`form-control ${errors.password ? 'is-invalid' : ''} focus:outline-none w-full h-8 p-4 bg-slate-100 rounded`} />
+            <input placeholder='Your Name' name="name" type="text" {...register('name')} className={`form-control ${errors.password ? 'is-invalid' : ''} focus:outline-none w-full h-8 p-4 bg-slate-100 rounded`} />
                             <div className="text-red-500">{errors.name?.message}</div>
       
                       </div>
@@ -70,7 +70,9 @@ const formOptions = { resolver: yupResolver(validationSchema) };
               {" "}
               Email :
           </label>
-          <input name="email" type="email" {...register('email')} className={`form-control ${errors.password ? 'is-invalid' : ''} focus:outline-none w-full h-8 p-4 bg-slate-100 rounded`} />
+          <input
+            placeholder='Email'
+            name="email" type="email" {...register('email')} className={`form-control ${errors.password ? 'is-invalid' : ''} focus:outline-none w-full h-8 p-4 bg-slate-100 rounded`} />
                             <div className="text-red-500">{errors.email?.message}</div>
                      
       
@@ -81,7 +83,9 @@ const formOptions = { resolver: yupResolver(validationSchema) };
           <label
           className="text-lightindego font-medium"
           >Password</label>
-                            <input name="password" type="password" {...register('password')} className={`form-control ${errors.password ? 'is-invalid' : ''} focus:outline-none w-full h-8 p-4 bg-slate-100 rounded`} />
+          <input
+            placeholder='Password'
+            name="password" type="password" {...register('password')} className={`form-control ${errors.password ? 'is-invalid' : ''} focus:outline-none w-full h-8 p-4 bg-slate-100 rounded`} />
                             <div className="text-red-500">{errors.password?.message}</div>
             
                   </div>
@@ -90,7 +94,7 @@ const formOptions = { resolver: yupResolver(validationSchema) };
           className="text-lightindego font-medium"
           >Confirm Password</label>
           <input
-            
+            placeholder='Confirm Password'
             name="confirmPassword" type="password" {...register('confirmPassword')} className={`form-control ${errors.confirmPassword ? 'is-invalid' : ''} focus:outline-none w-full h-8 p-4 bg-slate-100 rounded `} />
                             <div className="text-red-500 ">{errors.confirmPassword?.message}</div>
           

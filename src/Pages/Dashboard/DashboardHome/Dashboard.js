@@ -2,6 +2,7 @@
 import React, {useState} from 'react';
 import { Outlet, Link } from 'react-router-dom';
 import Image from '../../../assets/Image/Image';
+import Header from '../Header';
 
 
 
@@ -14,11 +15,11 @@ function DashboardHome() {
       <div
         className={` ${
           open ? "w-72" : "w-20 "
-        } bg-indego h-screen p-5  pt-8 absolute duration-300  `}
+        } bg-indego h-screen p-5  pt-8  absolute md:relative duration-300  `}
       >
         <img
           src={Image.control}
-          className={`absolute cursor-pointer -right-3 top-9 w-7 border-lightindego
+          className={`absolute cursor-pointer -right-4 top-9 w-7 border-lightindego
            border-2 rounded-full  ${!open && "rotate-180"}`}
           onClick={() => setOpen(!open)} alt="imgs"
         />
@@ -39,7 +40,7 @@ function DashboardHome() {
           </h1>
         </div>
         <ul className="pt-10">
-          <Link
+          <Link state="Dashboard"
             onClick={() => setLink("dashboard")}
             className={`${link === "dashboard" && "bg-lightindego"} block rounded-[6px]`}
             to="">
@@ -52,12 +53,12 @@ function DashboardHome() {
             <img src={Image.chart} alt="chart" />
             <span className={`${!open && "hidden"} origin-left duration-200 text-lg font-semibold`}>
 
-              Dashboard
+              Home
             </span>
             
             </li>
             </Link>
-          <Link to="student"
+          <Link state="create post" to="student"
            onClick={() => setLink("student")}
            className={`${link === "student" && "bg-lightindego"} block rounded-[6px]`}
           >
@@ -67,11 +68,11 @@ function DashboardHome() {
            `}
           >
             
-            <img src={Image.chart} alt="chart" />
+            <img src={Image.folder} alt="chart" />
             <span className={`${!open && "hidden"} origin-left duration-200 text-lg font-semibold`}>
 
 
-                Student
+                Get Class
 </span>
             
             </li>
@@ -85,7 +86,7 @@ function DashboardHome() {
           className={`flex  rounded-md p-2 cursor-pointer hover:bg-txtclr text-gray-300 text-sm items-center gap-x-4  mt-2  
            `}
           >
-            <img src={Image.chart} alt="chart" />
+            <img src={Image.user} alt="chart" />
             <span className={`${!open && "hidden"} origin-left duration-200 text-lg font-semibold`}>
 
               Teacher
@@ -101,14 +102,14 @@ function DashboardHome() {
           className={`flex  rounded-md p-2 cursor-pointer hover:bg-txtclr text-gray-300 text-sm items-center gap-x-4  mt-2 
            `}
           >
-            <img src={Image.chart} alt="chart" />
+            <img src={Image.user} alt="chart" />
             <span className={`${!open && "hidden"} origin-left duration-200 text-lg font-semibold`}>
 
               Class
             </span>
             </li>
           </Link>
-          <Link to="scedule"
+          <Link state="Scedule" to="scedule"
            onClick={() => setLink("scedule")}
            className={`${link === "scedule" && "bg-lightindego"} block rounded-[6px]`}
           >
@@ -117,7 +118,7 @@ function DashboardHome() {
           className={`flex  rounded-md p-2 cursor-pointer hover:bg-txtclr text-gray-300 text-sm items-center gap-x-4  mt-2 
            `}
           >
-            <img src={Image.chart} alt="chart" />
+            <img src={Image.calender} alt="chart" />
             <span className={`${!open && "hidden"} origin-left duration-200 text-lg font-semibold`}>
 
               Scedule
@@ -126,10 +127,13 @@ function DashboardHome() {
             </Link>
         </ul>
       </div>
-      <div className="h-screen flex-1 p-7 ml-[55px]">
-              <h1 className="text-2xl font-semibold ">
+      <div className="h-screen flex-1 ">
+                  <Header/>
+        <div className='p-4 pt-0 md:pt-0 md:p-1 md:pl-0  ml-16 ssm:ml-14 md:ml-0'>
+          
                   <Outlet/>
-              </h1>
+            </div>
+              
       </div>
     </div>
   )

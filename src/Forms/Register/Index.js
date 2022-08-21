@@ -90,7 +90,9 @@ function Register() {
               {" "}
               First Name :
                 </label>
-                <input name="firstName" type="text" {...register('firstName')} className={`form-control ${errors.password ? 'is-invalid' : ''} focus:outline-none w-full h-8 p-4 bg-slate-100 rounded`} />
+                <input
+                  placeholder='First Name'
+                  name="firstName" type="text" {...register('firstName')} className={`form-control ${errors.password ? 'is-invalid' : ''} focus:outline-none w-full h-8 p-4 bg-slate-100 rounded`} />
                             <div className="text-red-500">{errors.firstName?.message}</div>
                       
       
@@ -105,7 +107,7 @@ function Register() {
               {" "}
               Last Name :
                 </label>
-                <input name="lastName" type="text" {...register('lastName')} className={`form-control ${errors.password ? 'is-invalid' : ''} focus:outline-none w-full h-8 p-4 bg-slate-100 rounded`} />
+                <input placeholder='Last Name'  name="lastName" type="text" {...register('lastName')} className={`form-control ${errors.password ? 'is-invalid' : ''} focus:outline-none w-full h-8 p-4 bg-slate-100 rounded`} />
                             <div className="text-red-500">{errors.lastName?.message}</div>
                       
       
@@ -120,7 +122,7 @@ function Register() {
               {" "}
               Email :
           </label>
-          <input name="email" type="email" {...register('email')} className={`form-control ${errors.password ? 'is-invalid' : ''} focus:outline-none w-full h-8 p-4 bg-slate-100 rounded`} />
+          <input placeholder='Email' name="email" type="email" {...register('email')} className={`form-control ${errors.password ? 'is-invalid' : ''} focus:outline-none w-full h-8 p-4 bg-slate-100 rounded`} />
                             <div className="text-red-500">{errors.email?.message}</div>
       
           </div>
@@ -130,7 +132,7 @@ function Register() {
           <label
           className="text-lightindego font-medium"
           >Password</label>
-                            <input name="password" type="password" {...register('password')} className={`form-control ${errors.password ? 'is-invalid' : ''} focus:outline-none w-full h-8 p-4 bg-slate-100 rounded`} />
+                            <input placeholder='Password' name="password" type="password" {...register('password')} className={`form-control ${errors.password ? 'is-invalid' : ''} focus:outline-none w-full h-8 p-4 bg-slate-100 rounded`} />
                             <div className="text-red-500">{errors.password?.message}</div>
             
                   </div>
@@ -139,7 +141,7 @@ function Register() {
           className="text-lightindego font-medium"
           >Confirm Password</label>
           <input
-            
+            placeholder='Confirm Password'
             name="confirmPassword" type="password" {...register('confirmPassword')} className={`form-control ${errors.confirmPassword ? 'is-invalid' : ''} focus:outline-none w-full h-8 p-4 bg-slate-100 rounded `} />
                             <div className="text-red-500 ">{errors.confirmPassword?.message}</div>
           
@@ -156,7 +158,7 @@ function Register() {
               {" "}
               Subject Name :
             </label>
-                      <input name="subjectName" type="text" {...register('subjectName')} className={`form-control ${errors.password ? 'is-invalid' : ''} focus:outline-none w-full h-8 p-4 bg-slate-100 rounded`} />
+                      <input placeholder='Subject Name' name="subjectName" type="text" {...register('subjectName')} className={`form-control ${errors.password ? 'is-invalid' : ''} focus:outline-none w-full h-8 p-4 bg-slate-100 rounded`} />
                             <div className="text-red-500">{errors.subjectName?.message}</div>
       
       
@@ -171,7 +173,7 @@ function Register() {
               {" "}
               Year of Experience :
             </label>
-            <input name="experience" type="number" {...register('experience')} className={`form-control ${errors.password ? 'is-invalid' : ''} focus:outline-none w-full h-8 p-4 bg-slate-100 rounded`} />
+            <input placeholder='Experience' name="experience" type="number" {...register('experience')} className={`form-control ${errors.password ? 'is-invalid' : ''} focus:outline-none w-full h-8 p-4 bg-slate-100 rounded`} />
                             <div className="text-red-500">{errors.experience?.message}</div>        
               
                       </div>
@@ -183,7 +185,7 @@ function Register() {
               {" "}
               Qualification :
             </label>
-            <input name="qualification" type="text" {...register('qualification')} className={`form-control ${errors.password ? 'is-invalid' : ''} focus:outline-none w-full h-8 p-4 bg-slate-100 rounded`} />
+            <input placeholder='Qualification' name="qualification" type="text" {...register('qualification')} className={`form-control ${errors.password ? 'is-invalid' : ''} focus:outline-none w-full h-8 p-4 bg-slate-100 rounded`} />
                             <div className="text-red-500">{errors.qualification?.message}</div>        
                       </div>
                   </div>

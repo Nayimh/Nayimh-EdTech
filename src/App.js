@@ -6,6 +6,7 @@ import NotFound from "./NotFound/NotFound";
 import Class from "./Pages/Dashboard/Class";
 import Dashboard from "./Pages/Dashboard/DashboardHome";
 import DashboardHome from "./Pages/Dashboard/DashboardHome/Dashboard";
+import StudentEditProfile from "./Pages/Dashboard/EditProfile";
 import Scedule from "./Pages/Dashboard/Scedule";
 import Students from "./Pages/Dashboard/Students";
 import Teacher from "./Pages/Dashboard/Teacher";
@@ -19,8 +20,9 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/dashboard" element={<DashboardHome />} >
-            <Route  index element={<Dashboard/>} />
+            <Route index element={<Dashboard/>} />
             <Route  path="student" element={<Students/>} />
+            <Route  path="editProdile" element={<StudentEditProfile/>} />
             <Route path="teacher" element={<Teacher />} />
             <Route path="class" element={<Class/>} />
             <Route path="scedule" element={<Scedule/>} />
