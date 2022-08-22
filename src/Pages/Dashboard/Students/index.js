@@ -9,7 +9,6 @@ function Students() {
   const { state } = useLocation();
 
   const validationSchema = Yup.object().shape({
-    
     subject: Yup.string()
       .required("Subject Name is required")
       .min(3, " Subject Name must be longer then 3 characters"),
@@ -17,7 +16,7 @@ function Students() {
     date: Yup.string().required("Date is required"),
     time: Yup.string().required("Fix your convenient Time"),
     desc: Yup.string().required("Description is Required"),
-
+    title: Yup.string().required("Title is Required"),
   });
   const formOptions = { resolver: yupResolver(validationSchema) };
 
@@ -42,7 +41,7 @@ function Students() {
         </h1>
       </div>
       <div>
-        <h1 className="text-center mt-10 mb-10 text-2xl font-bold text-lightindego ">
+        <h1 className="text-center mt-10 mb-10 text-2xl font-bold text-slate-300 bg-lightindego w-[100%] md:w-[50%]  mx-auto  p-5 rounded-lg">
           Request For Class
         </h1>
         <div className="w-full md:w-[600px] mx-auto">
@@ -92,6 +91,25 @@ function Students() {
                     {errors.level?.message}
                   </div>
                 </div>
+              </div>
+            </div>
+            <div className="flex flex-col gap-2 ">
+              <label
+                htmlFor="title"
+                className="text-lightindego font-medium"
+              >
+                {" "}
+                Title :
+              </label>
+              <input
+                placeholder="Subject Title"
+                name="title"
+                type="text"
+                {...register("title")}
+                className={`form-control  focus:outline-none w-full h-8 p-4 bg-slate-100 rounded`}
+              />
+              <div className="text-red-500">
+                {errors.title?.message}
               </div>
             </div>
             <div className="flex gap-4">
@@ -157,9 +175,6 @@ function Students() {
                 {errors.desc?.message}
               </div>
             </div>
-
-            
-           
 
             <div className="flex gap-5 justify-start">
               <input

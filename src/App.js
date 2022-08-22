@@ -19,18 +19,21 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/dashboard" element={<DashboardHome />} >
-            <Route index element={<Dashboard/>} />
-            <Route  path="student" element={<Students/>} />
-            <Route  path="editProdile" element={<StudentEditProfile/>} />
+          <Route path="/dashboard" element={<DashboardHome />}>
+            <Route index element={<Dashboard />} />
+            <Route path="classrequest" element={<Students />} />
+            <Route
+              path="editProdile"
+              element={<StudentEditProfile />}
+            />
             <Route path="teacher" element={<Teacher />} />
-            <Route path="class" element={<Class/>} />
-            <Route path="scedule" element={<Scedule/>} />
+            <Route path="class" element={<Class />} />
+            <Route path="scedule" element={<Scedule />} />
           </Route>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="*" element={ <NotFound/> } />
-      </Routes>
+          <Route path="*" element={<NotFound />} />
+        </Routes>
       </BrowserRouter>
     </div>
   );

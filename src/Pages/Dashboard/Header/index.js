@@ -15,10 +15,10 @@ function Header() {
   const [notificaton, setNotification] = useState(false);
 
   return (
-    <div className="container mx-auto mb-7">
+    <div className=" mx-auto mb-7 p-0  ">
       <div className="w-[100%] h-24 bg-indego">
         <div className="flex px-5 justify-between items-center h-[100%]">
-          <h1 className=" md:ml-5  text-2xl text-white font-bold">
+          <h1 className="ml-20 md:ml-0 text-xl md:text-2xl text-white font-bold">
             {" "}
             Dashboard{" "}
           </h1>
@@ -106,7 +106,7 @@ function Header() {
                   <img
                     src={Image?.green}
                     alt=""
-                    className="mb-1 h-10 w-10 rounded-full"
+                    className="mb-1 h-14 w-14 rounded-full"
                   />
                   <h3 className="text-light-white font-semibold text-xl ">
                     {" "}
