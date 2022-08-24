@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 
-function Students() {
+function ClassRequest() {
   const { state } = useLocation();
 
   const validationSchema = Yup.object().shape({
@@ -17,6 +17,7 @@ function Students() {
     time: Yup.string().required("Fix your convenient Time"),
     desc: Yup.string().required("Description is Required"),
     title: Yup.string().required("Title is Required"),
+    institute: Yup.string().required("Institute Name is Required"),
   });
   const formOptions = { resolver: yupResolver(validationSchema) };
 
@@ -41,10 +42,10 @@ function Students() {
         </h1>
       </div>
       <div>
-        <h1 className="text-center mt-10 mb-10 text-2xl font-bold text-slate-300 bg-lightindego w-[100%] md:w-[50%]  mx-auto  p-5 rounded-lg">
+        <h1 className="text-center mt-10 mb-10 text-2xl font-bold text-slate-300 bg-lightindego w-[100%] md:w-[60%]  mx-auto  p-5 rounded-lg">
           Request For Class
         </h1>
-        <div className="w-full md:w-[600px] mx-auto">
+        <div className="w-full md:w-[700px] mx-auto">
           <form
             className="flex flex-col w-full gap-6 "
             onSubmit={handleSubmit(onSubmit)}
@@ -65,7 +66,7 @@ function Students() {
                     {...register("subject")}
                     className={`form-control ${
                       errors.password ? "is-invalid" : ""
-                    } focus:outline-none w-full h-8 p-4 bg-slate-100 rounded`}
+                    } focus:outline-none w-full h-8 p-4 bg-slate-200 rounded`}
                     placeholder="Subject Name"
                   />
                   <div className="text-red-500">
@@ -85,12 +86,31 @@ function Students() {
                     name="level"
                     type="text"
                     {...register("level")}
-                    className={`form-control  focus:outline-none w-full h-8 p-4 bg-slate-100 rounded`}
+                    className={`form-control  focus:outline-none w-full h-8 p-4 bg-slate-200 rounded`}
                   />
                   <div className="text-red-500">
                     {errors.level?.message}
                   </div>
                 </div>
+              </div>
+            </div>
+            <div className="flex flex-col gap-2 ">
+              <label
+                htmlFor="institute"
+                className="text-lightindego font-medium"
+              >
+                {" "}
+                Institute :
+              </label>
+              <input
+                placeholder="Institute Name"
+                name="institute"
+                type="text"
+                {...register("institute")}
+                className={`form-control  focus:outline-none w-full h-8 p-4 bg-slate-200 rounded`}
+              />
+              <div className="text-red-500">
+                {errors.institute?.message}
               </div>
             </div>
             <div className="flex flex-col gap-2 ">
@@ -106,7 +126,7 @@ function Students() {
                 name="title"
                 type="text"
                 {...register("title")}
-                className={`form-control  focus:outline-none w-full h-8 p-4 bg-slate-100 rounded`}
+                className={`form-control  focus:outline-none w-full h-8 p-4 bg-slate-200 rounded`}
               />
               <div className="text-red-500">
                 {errors.title?.message}
@@ -126,7 +146,7 @@ function Students() {
                     name="date"
                     type="date"
                     {...register("date")}
-                    className={`form-control  focus:outline-none w-full h-8 p-4 bg-slate-100 rounded`}
+                    className={`form-control  focus:outline-none w-full h-8 p-4 bg-slate-200 rounded`}
                     placeholder="Subject Name"
                   />
                   <div className="text-red-500">
@@ -146,7 +166,7 @@ function Students() {
                     name="time"
                     type="time"
                     {...register("time")}
-                    className={`form-control  focus:outline-none w-full h-8 p-4 bg-slate-100 rounded`}
+                    className={`form-control  focus:outline-none w-full h-8 p-4 bg-slate-200 rounded`}
                   />
                   <div className="text-red-500">
                     {errors.time?.message}
@@ -169,7 +189,7 @@ function Students() {
                 type="text"
                 rows="6"
                 {...register("desc")}
-                className={`form-control  focus:outline-none w-full  p-4 bg-slate-100 rounded`}
+                className={`form-control  focus:outline-none w-full  p-4 bg-slate-200 rounded`}
               />
               <div className="text-red-500">
                 {errors.desc?.message}
@@ -196,4 +216,4 @@ function Students() {
   );
 }
 
-export default Students;
+export default ClassRequest;

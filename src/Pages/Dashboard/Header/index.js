@@ -33,7 +33,7 @@ function Header() {
               <div
                 className={` ${
                   notificaton ? " block " : "hidden opacity-0"
-                } absolute w-60  bg-indego -ml-48 mt-2 rounded p-4  transition delay-300`}
+                } absolute w-60  bg-indego -ml-48 mt-2 rounded p-4 z-50 transition delay-300`}
               >
                 <div className="flex justify-end">
                   <p
@@ -91,7 +91,7 @@ function Header() {
               <div
                 className={` ${
                   active ? " block " : "hidden opacity-0"
-                } absolute w-60  bg-indego -ml-48 mt-2 rounded p-4  transform:delay-1000 ease-in`}
+                } absolute w-60  bg-indego -ml-48 mt-2 rounded p-4 z-50  transform:delay-1000 ease-in`}
               >
                 <div className="flex items-center justify-end  relative">
                   <span
@@ -114,7 +114,7 @@ function Header() {
                   </h3>
                   <p className="text-slate-300 "> Student </p>
                 </div>
-                <div>
+                <div >
                   <Link state="Edit Profile" to="./editProdile">
                     <div className=" flex gap-3 items-center justify-start text-slate-400 text-lg cursor-pointer hover:text-slate-300 mb-5">
                       <span>

@@ -10,7 +10,7 @@ function Teacher() {
   const { state } = useLocation();
   
   return (
-    <div>
+    <div className='container mx-auto'>
       <div className="flex justify-start mb-10 w-full h-10 bg-lightindego items-center ">
         <h1 className="text-slate-300 font-medium  text-lg flex items-center px-5">
           {" "}
@@ -21,7 +21,7 @@ function Teacher() {
         <h1 className="text-center text-2xl md:text-4xl text-indego font-bold mb-7 ">
           All Teachers
         </h1>
-        <div className="flex justify-center flex-wrap gap-2 ">
+        <div className="flex justify-center flex-wrap gap-4 ">
           <div className=" w-[250px] h-[300px] rounded-lg bg-indego ">
             <div className="p-4  flex justify-center w-full">
               <img
