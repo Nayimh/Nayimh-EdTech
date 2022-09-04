@@ -1,15 +1,23 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify"; 
 import "react-toastify/dist/ReactToastify.css";
-import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from 'react-redux';
+import {
+  resetuser,
+  registeruser,
+} from "../../features/auth/authSlice";
+
+
 
 function StudentRegister() {
-  const [loading, setIsloading] = useState(false);
-  const [success, setSuccess] = useState(false);
-  const [error, setError] = useState(false);
+ 
+
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const validationSchema = Yup.object().shape({
     password: Yup.string()
@@ -18,12 +26,27 @@ function StudentRegister() {
     confirmPassword: Yup.string()
       .required("Confirm Password is required")
       .oneOf([Yup.ref("password")], "Passwords must match"),
-    email: Yup.string().required("Email is required"),
+    email: Yup.string()
+      .email("Must be a valid email")
+      .max(255)
+      .required("Email is required"),
     name: Yup.string()
       .required("Full Name is required")
       .min(4, "Name must be longer then 4 characters"),
   });
   const formOptions = { resolver: yupResolver(validationSchema) };
+
+
+  const { user, isLoading, isError, isSuccess, message } = useSelector((state) => state.auth);
+  
+  useEffect(() => {
+ 
+    if (isSuccess || user) {
+      navigate("/login");
+      alert( `${message}`, 'successfully regestered please login!')
+    }
+    dispatch(resetuser());
+  }, [user, isError, isSuccess, message, navigate, dispatch]);
 
   const {
     register,
@@ -45,46 +68,19 @@ function StudentRegister() {
       role,
     };
 
-    setIsloading(true);
-    axios
-      .post(
-        "https://classroommern.herokuapp.com/user/register",
-        regInfo
-      )
-      .then((resp) => {
-        setIsloading(false);
-        setSuccess(resp?.data.success);
-        toast.success(`🦄 ${resp?.data?.success} `, {
-          position: "top-center",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
-      })
-      .catch((err) => {
-        setIsloading(false);
-        setError(err);
+   
 
-        toast.error(`🦄  ${err?.message} `, {
-          position: "top-center",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
-      });
+     
+      dispatch(registeruser(regInfo))
+
+     
 
     reset();
   };
 
   return (
     <div className="w-full">
-      {!loading ? (
+      {!isLoading ? (
         <form
           className="flex flex-col w-full gap-6 "
           onSubmit={handleSubmit(onSubmit)}
@@ -125,7 +121,9 @@ function StudentRegister() {
               placeholder="Email"
               name="email"
               type="email"
-              {...register("email")}
+              {...register("email", {
+                pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+              })}
               className={`form-control ${
                 errors.password ? "is-invalid" : ""
               } focus:outline-none w-full h-8 p-4 bg-slate-300 rounded`}
