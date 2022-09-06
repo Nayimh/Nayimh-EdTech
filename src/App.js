@@ -16,7 +16,7 @@ import Home from "./Pages/Home/Home";
 
 function App() {
   return (
-    <div>
+    <div> 
 
         <BrowserRouter>
           <Routes>
@@ -32,6 +32,7 @@ function App() {
               <Route path="class" element={<Class />} />
               <Route path="comment" element={<Comment />} />
               <Route path="scedule" element={<Scedule />} />
+            
             </Route>
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />

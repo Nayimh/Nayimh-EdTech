@@ -6,39 +6,35 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from "react-redux";
 import {
   resetuser,
   loginUser,
 } from "../../features/auth/authSlice.js";
 
-
 function Login() {
+  const validationSchema = Yup.object().shape({
+    email: Yup.string()
+      .email("Must be a valid email")
+      .max(255)
+      .required("Email is required"),
+    password: Yup.string()
+      .required("Password is required")
+      .min(6, "Password must be at least 6 characters"),
+  });
 
-    const validationSchema = Yup.object().shape({
-      email: Yup.string()
-        .email("Must be a valid email")
-        .max(255)
-        .required("Email is required"),
-      password: Yup.string()
-        .required("Password is required")
-        .min(6, "Password must be at least 6 characters"),
-    });
-  
   const formOptions = { resolver: yupResolver(validationSchema) };
 
-
- 
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const { user, isLoading, isError, isSuccess, message } =
     useSelector((state) => state.auth);
-  
+
   useEffect(() => {
     if (isSuccess || user) {
       navigate("/dashboard");
-   
+      toast.success("Login Successfull")
     }
     dispatch(resetuser());
   }, [user, isError, isSuccess, message, navigate, dispatch]);
@@ -61,46 +57,6 @@ function Login() {
 
     dispatch(loginUser(logInfo));
 
-
-    // setIsloading(true);
-    // axios.post(
-    //   "https://classroommern.herokuapp.com/user/login",
-    //   logInfo
-    // ).then(resp => {
-    //   setIsloading(false);
-    
-    //   // localStorage.setItem("token", resp?.data?.token);
-    
-    
-    //   toast.success(
-    //     ` ${resp?.data?.success} "Login Successfull"`,
-    //     {
-    //       position: "top-center",
-    //       autoClose: 5000,
-    //       hideProgressBar: false,
-    //       closeOnClick: true,
-    //       pauseOnHover: true,
-    //       draggable: true,
-    //       progress: undefined,
-    //     }
-    //   );
-      
-    //   navigate('/dashboard')
-    // }).catch((err) => {
- 
-    //   setIsloading(false)
-    //    toast.error(`🦄  ${err.message} `, {
-    //      position: "top-center",
-    //      autoClose: 5000,
-    //      hideProgressBar: false,
-    //      closeOnClick: true,
-    //      pauseOnHover: true,
-    //      draggable: true,
-    //      progress: undefined,
-    //    });
-
-    // } )
-    
     reset();
   };
 
@@ -114,6 +70,10 @@ function Login() {
           {" "}
           Login Form{" "}
         </h1>
+        <div>
+          {isError ? <h2 className="text red"> Invalid Email or Password! please try again! </h2> : null }
+        </div>
+        {isLoading && <div> <h2 className="text-indego"> Loading </h2> </div> }
         {!isLoading ? (
           <form
             className="flex flex-col w-full gap-6 "
