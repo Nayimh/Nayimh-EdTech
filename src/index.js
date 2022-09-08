@@ -11,8 +11,9 @@ axios.defaults.baseURL = "https://classroommern.herokuapp.com/";
 axios.defaults.headers.common[
   "Authorization"
 ] = `Bearer ${user?.token}`;
-
-console.log(`Bearer ${user?.token}`);
+axios.defaults.headers.post["Content-Type"] =
+  "application/x-www-form-urlencoded";
+// axios.defaults.headers.post["Content-Type"] = "application/json";
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

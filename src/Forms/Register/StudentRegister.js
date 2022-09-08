@@ -2,20 +2,16 @@ import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
-import { ToastContainer,  } from "react-toastify"; 
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from "react-redux";
 import {
   resetuser,
   registeruser,
 } from "../../features/auth/authSlice";
 
-
-
 function StudentRegister() {
- 
-
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -36,18 +32,16 @@ function StudentRegister() {
   });
   const formOptions = { resolver: yupResolver(validationSchema) };
 
+  const { user, isLoading, isError, isSuccess, message } =
+    useSelector((state) => state.auth);
 
-  const { user, isLoading, isError, isSuccess, message } = useSelector((state) => state.auth);
-  
   useEffect(() => {
- 
     if (isSuccess || user) {
       navigate("/login");
-      alert( `${message}`, 'successfully regestered please login!')
     }
     dispatch(resetuser());
   }, [user, isError, isSuccess, message, navigate, dispatch]);
-
+  
   const {
     register,
     handleSubmit,
@@ -68,12 +62,7 @@ function StudentRegister() {
       role,
     };
 
-   
-
-     
-      dispatch(registeruser(regInfo))
-
-     
+    dispatch(registeruser(regInfo));
 
     reset();
   };
