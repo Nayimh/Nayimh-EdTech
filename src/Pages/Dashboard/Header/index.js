@@ -131,11 +131,11 @@ function Header() {
                   />
                   <h3 className="text-light-white font-semibold text-xl ">
                     {" "}
-                    {user?.user?.name}
+                    {user?.auth?.name}
                   </h3>
                   <p className="text-slate-300 ">
                     {" "}
-                   Role: {user?.user?.role}{" "}
+                    Role: {user?.auth?.role}{" "}
                   </p>
                 </div>
                 <div>

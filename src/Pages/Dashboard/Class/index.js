@@ -4,17 +4,21 @@ import { useLocation } from 'react-router-dom';
 import { AiOutlineClose } from "react-icons/ai";
 import { TiTick } from "react-icons/ti";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllClasses } from "../../../features/getAllClassSlice";
+import { getAllClasses, updateClass } from "../../../features/getAllClassSlice";
 import { useEffect } from "react";
 import { useState } from "react";
 
+
 function Class() {
-  
+
+
   const [allClass, setAllClass] = useState([]);
 
   const dispatch = useDispatch();
 
-  const { classes } = useSelector((state) => state.classes);
+  const { classes, isLoading,  } = useSelector(
+    (state) => state.classes
+  );
 
   const studentClass = classes?.data?.studentClassRequest;
 
@@ -30,6 +34,15 @@ function Class() {
  
   const { state } = useLocation();
 
+  const handleUpdate = (id) => {
+
+    dispatch(updateClass(id));
+
+    console.log(id)
+
+  }
+
+
   return (
     <div className="container mx-auto">
       <div className="flex justify-start mb-10 w-full h-10 bg-lightindego items-center ">
@@ -42,8 +55,12 @@ function Class() {
         {" "}
         ALL Requested Class Total {allClass?.length}
       </h1>
+      {
+        isLoading &&  <h1 className='text-indego text-2xl text-center font-bold'> Loading ... </h1>
+      }
       <div className="flex justify-center flex-wrap gap-8">
         {allClass?.map((myClass) => (
+          
           <div
             key={myClass?._id}
             className="w-[290px]  bg-gray-100 hover:bg-gray-200 rounded border hover:border-indego shadow-xl relative"
@@ -85,20 +102,33 @@ function Class() {
                 </h4>
               </div>
               <div className="flex justify-around mt-3 items-center">
-                <span className="w-10 h-10 rounded-full flex justify-center items-center cursor-pointer bg-gray-200 hover:bg-gray-300">
+                {/* <span className="w-10 h-10 rounded-full flex justify-center items-center cursor-pointer bg-gray-200 hover:bg-gray-300">
                   {" "}
                   <AiOutlineClose className="text-2xl !text-red-600 font-bold" />{" "}
-                </span>
-                <span className="w-10 h-10 rounded-full flex justify-center items-center cursor-pointer bg-gray-200 hover:bg-gray-300">
-                  {" "}
-                  <TiTick className="text-3xl text-green-600" />{" "}
-                </span>
+                </span> */}
+                {myClass?.status === "pending" ? (
+                  <span
+                    onClick={() => handleUpdate(myClass?._id)}
+                    className="w-10 h-10 rounded-full flex justify-center items-center cursor-pointer bg-gray-200 hover:bg-gray-300"
+                  >
+                    <h1 className="flex bg-indego items-center justify-center px-2 rounded text-gray-300 text-xl">
+                      {" "}
+                      Accep <TiTick className=" text-green-600" />
+                    </h1>{" "}
+                  </span>
+                ) : (
+                  <span
+                    onClick={() => handleUpdate(myClass?._id)}
+                    className="w-10 h-10 rounded-full flex justify-center items-center cursor-pointer bg-gray-200 hover:bg-gray-300"
+                  >
+                    <button  className="flex bg-lightindego disabled: items-center justify-center px-2 rounded text-gray-300 text-xl">
+                      {" "}
+                      Accepted 
+                    </button>{" "}
+                  </span>
+                )}
               </div>
             </div>
-            {/* <div className="absolute px-2 py-0 bg-[#c1c7fa]   right-0 top-0 rounded-lg">
-
-              <p> {myClass.status} </p>
-            </div> */}
           </div>
         ))}
       </div>

@@ -16,10 +16,10 @@ export const registeruser = createAsyncThunk(
   "auth/register",
   async (user, thunkAPI) => {
     try {
-      await authService.registeruser(user);
+     return await authService.registeruser(user);
     } catch (error) {
       const message = error.message;
-
+      // console.log(message)
       return thunkAPI.rejectWithValue(message);
     }
   }
@@ -69,6 +69,7 @@ export const authSlice = createSlice({
         state.isLoading = false;
         state.isError = action.payload;
         state.user = null;
+        state.message = action.payload
       })
       .addCase(loginUser.pending, (state) => {
         state.isError = true;

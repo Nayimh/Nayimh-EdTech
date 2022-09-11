@@ -35,6 +35,7 @@ function Login() {
     if (isSuccess || user) {
       navigate("/dashboard");
       toast.success("Login Successfull")
+      
     }
     dispatch(resetuser());
   }, [user, isError, isSuccess, message, navigate, dispatch]);

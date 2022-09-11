@@ -12,34 +12,41 @@ import Scedule from "./Pages/Dashboard/Scedule";
 import ClassRequest from "./Pages/Dashboard/Students";
 import Teacher from "./Pages/Dashboard/Teacher";
 import Home from "./Pages/Home/Home";
+import PrivateRoute from "./Pages/PrivateRoute/PrivateRoute";
 
 
 function App() {
   return (
-    <div> 
+    <div>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
 
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/dashboard" element={<DashboardHome />}>
-              <Route index element={<Dashboard />} />
-              <Route path="classrequest" element={<ClassRequest />} />
-              <Route
-                path="editProdile"
-                element={<StudentEditProfile />}
-              />
-              <Route path="teacher" element={<Teacher />} />
-              <Route path="class" element={<Class />} />
-              <Route path="comment" element={<Comment />} />
-              <Route path="scedule" element={<Scedule />} />
-            
-            </Route>
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </BrowserRouter>
-    
+          <Route
+            path="/dashboard"
+            element={
+              <PrivateRoute>
+                {" "}
+                <DashboardHome />{" "}
+              </PrivateRoute>
+            }
+          >
+            <Route index element={<Dashboard />} />
+            <Route path="classrequest" element={<ClassRequest />} />
+            <Route
+              path="editProdile"
+              element={<StudentEditProfile />}
+            />
+            <Route path="teacher" element={<Teacher />} />
+            <Route path="class" element={<Class />} />
+            <Route path="comment" element={<Comment />} />
+            <Route path="scedule" element={<Scedule />} />
+          </Route>
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }

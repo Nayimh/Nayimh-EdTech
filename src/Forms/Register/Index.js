@@ -1,6 +1,7 @@
 
 import React from 'react'
 
+
 import { Link } from 'react-router-dom';
 import './Register.css';
 import StudentRegister from './StudentRegister';
@@ -8,6 +9,7 @@ import StudentRegister from './StudentRegister';
 
 function Register() {
 
+ 
     
   return (
     <div className="container mx-auto w-[100%] h-[100vh] bg-slate-50 flex  justify-center items-center">
@@ -17,6 +19,8 @@ function Register() {
           Register Form{" "}
               </h1>
               
+      
+      
         
         <div className='w-full'>
                           <StudentRegister/>

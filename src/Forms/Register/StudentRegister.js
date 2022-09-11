@@ -1,8 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
-import { ToastContainer } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
@@ -11,7 +11,11 @@ import {
   registeruser,
 } from "../../features/auth/authSlice";
 
+
 function StudentRegister() {
+
+  const [error, setError] = useState();
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -35,6 +39,8 @@ function StudentRegister() {
   const { user, isLoading, isError, isSuccess, message } =
     useSelector((state) => state.auth);
 
+  
+  
   useEffect(() => {
     if (isSuccess || user) {
       navigate("/login");
@@ -42,6 +48,21 @@ function StudentRegister() {
     dispatch(resetuser());
   }, [user, isError, isSuccess, message, navigate, dispatch]);
   
+   useEffect(() => {
+     setError(
+       isError &&
+         toast.error(` Request Failed. try again! `, {
+           position: "top-center",
+           autoClose: 2000,
+           hideProgressBar: false,
+           closeOnClick: true,
+           pauseOnHover: true,
+           draggable: true,
+           progress: undefined,
+         })
+     );
+   }, [isError]);
+
   const {
     register,
     handleSubmit,
@@ -69,7 +90,20 @@ function StudentRegister() {
 
   return (
     <div className="w-full">
-      {!isLoading ? (
+     
+      {isLoading &&
+        <div className="flex justify-center items-center">
+          <h1 className="text-2xl font-bold text-center z-30 text-indego">
+            {" "}
+            Loading...{" "}
+          </h1>
+        </div>
+      }
+      <div>
+        {
+          error && error
+        }
+     </div>
         <form
           className="flex flex-col w-full gap-6 "
           onSubmit={handleSubmit(onSubmit)}
@@ -199,14 +233,18 @@ function StudentRegister() {
             </span>
           </div>
         </form>
-      ) : (
-        <div className="flex justify-center items-center">
-          <h1 className="text-2xl font-bold text-indego">
-            {" "}
-            Loading{" "}
-          </h1>
-        </div>
-      )}
+      
+
+      <div>
+        {
+          isError ?  <p> {isError} </p> : null
+        }
+        
+        {
+          isSuccess ? <p> {isSuccess} </p> : null
+        }
+      </div>
+
     </div>
   );
 }
